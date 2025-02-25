@@ -1,0 +1,37 @@
+{
+  "workbench.layoutControl.enabled": false,
+  "breadcrumbs.enabled": true,
+  "editor.stickyScroll.enabled": true,
+  "inlineFold.supportedLanguages": [
+    "astro",
+    "vue",
+    "html",
+    "svelte",
+    "vue-html",
+    "php",
+    "blade",
+    "erb",
+    "twig",
+    "nunjucks",
+    "django-html",
+    "jinja-html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  // Runs Prettier, then ESLint
+  "editor.codeActionsOnSave": {
+    "source.formatDocument": "always",
+    "source.fixAll.eslint": "always"
+  },
+  "eslint.format.enable": true,
+  "exportall.config.folderListener": [
+    "/src/chat/components/ChatMessage",
+    "/src/chat/components/Input",
+    "/src/chat/components"
+  ]
+}
