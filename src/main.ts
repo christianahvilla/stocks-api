@@ -8,11 +8,9 @@ const VERSION_PREFIX = 'v1';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  const configService = new ConfigService();
+  const configService = app.get(ConfigService);
 
   app.setGlobalPrefix(`${API_PREFIX}/${VERSION_PREFIX}`);
-
   app.enableCors();
 
   app.useGlobalPipes(
@@ -26,7 +24,16 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(configService.getOrThrow<number>('PORT'));
+  const isProduction = process.env.NODE_ENV === 'production';
+  const port = configService.get<number>('PORT');
+
+  if (isProduction && !port) {
+    console.log('Running in production mode without specifying a port.');
+    await app.listen(0);
+  } else {
+    await app.listen(port!); //  It is used on Prod
+    console.log(`Server running on port ${port}`);
+  }
 }
 
 bootstrap();
